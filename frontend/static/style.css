@@ -1,0 +1,510 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+body{
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/uniformed-men-march-parade-city-celebrates-patriotism-generated-by-ai.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+
+}
+.wrapper{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 40%;
+  width: 50%;
+  border-radius: 50%;
+  background: linear-gradient(-135deg, #1f1141, #14215f);
+  /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+  /* clip-path: circle(25px at calc(0% + 45px) 45px); */
+  clip-path: circle(25px at calc(100% - 45px) 45px);
+  transition: all 0.3s ease-in-out;
+}
+#active:checked ~ .wrapper{
+  clip-path: circle(75%);
+  
+}
+
+
+.menu-btn{
+  position: fixed;
+  z-index: 2;
+  right: 20px;
+  /* left: 20px; */
+  top: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #1f1141, #14215f);
+  /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+  transition: all 0.3s ease-in-out;
+}
+#active:checked ~ .menu-btn{
+  background: #ffffff;
+  color: #4158d0;
+}
+#active:checked ~ .menu-btn i:before{
+  content: "\f00d";
+}
+.wrapper ul{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+}
+.wrapper ul li{
+  margin: 15px 0;
+}
+.wrapper ul li a{
+  color: none;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 2px 2px;
+  color: #fff;
+  position: relative;
+  line-height: 50px;
+  transition: all 0.3s ease;
+}
+.wrapper ul li a:after{
+  position: absolute;
+  content: "";
+  background: #fff;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  border-radius: 50px;
+  transform: scaleY(0);
+  z-index: -1;
+  transition: transform 0.3s ease;
+  
+  
+}
+.wrapper ul li a:hover:after{
+  transform: scaleY(1);
+}
+.wrapper ul li a:hover{
+  color: #4158d0;
+}
+input[type="checkbox"]{
+  display: none;
+}
+.content {
+  position: absolute;
+  top: 13%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  text-align: center;
+  width: 100%;
+  color: rgb(19, 11, 29)
+}
+.content .title{
+  font-size: 35px;
+  font-weight: 700;
+}
+.content p{
+  font-size: 35px;
+  font-weight: 600;
+}
+
+
+
+.right {
+    background: linear-gradient(#100b3b, rgba(30, 3, 54, 0.71));
+    opacity: 80%;
+    padding: 20px;
+    border-radius: 80px ;
+    float:center;
+    float:inline-end;
+    width: 20%; /* The width is 20%, by default */
+  }
+
+  @media screen and (max-width: 800px) {
+    .left, .main, .right {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+      margin-top: 30%;
+    }
+    .skills{
+      padding-top: 10%;
+    }
+   
+  }
+
+  .right{
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  color: #c8c8c8;
+  z-index: 3;
+  }
+
+ .app-text .btn-group{
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+    margin-inline:100px;
+    
+    
+}
+
+.app-text .btn-group .play-btn{
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    
+    
+}
+
+ .app-text .btn-group span{
+    font-size: 20px;
+    margin-left: 24px;
+    color:  rgb(255, 111, 111);
+    cursor: pointer;
+
+}
+
+ .app-text .btn-group .play-btn-inner i{
+    font-size: 15px;
+    display: inline-flex;
+    width: 80px;
+    height: 80px;
+    padding-left: 4px;
+    text-align: center;
+    border: 1px solid rgb(149, 146, 146);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-column 0.3s ease-out;
+    
+}
+
+.app-text .btn-group .play-btn:hover .play-btn-inner i,
+.app-text .btn-group .play-btn:hover span{
+    color: #ffffff;
+    border-color: #ffffff;
+    transition: all 0.5s;
+    
+}
+
+.primary-btn:before{
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 1px;
+   /* border-top: 1px solid #fff;*/
+    top: 63%;
+    left: 60%;
+   
+}
+
+.about-me{
+  text-align: center;
+  
+  
+}
+
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+  background:linear-gradient(-135deg, rgb(12, 6, 66), #071a79);
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+
+.side {
+  flex: 30%;
+  
+  padding: 20px;
+}
+
+/* Main column */
+.main {
+  flex: 70%;
+  
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20%;
+  
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: #ddd;
+  margin-top: 10%;
+}
+
+
+
+.column-footer{
+  flex: 20%;
+  padding: 5%;
+}
+
+.column-footer-2{
+  flex: 20%;
+  background-color: #000000;
+}
+
+.column-footer-3{
+  flex: 60%;
+  background-color:#3300a0;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+    
+  }
+  
+}
+
+.skills{
+  margin-top: 20%;
+}
+
+h4{
+    color: rgb(210, 208, 208);
+    font-size:200%;
+}
+.fa-circle{
+  color: #410b9e;
+  
+}
+
+.img2{
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.img3{
+  margin-top: 30%;
+}
+
+p{
+    color: rgb(210, 208, 208);
+}
+p, h2{
+  margin-left: 1%;
+}
+
+.img5{
+  margin-top: 3%;
+}
+
+.education{
+  margin-top: 10%;
+}
+
+.fa-minus{
+  margin-left: 10%;
+}
+
+.solid-bar{
+  border-top: 1px solid #000000;
+  margin-top: 10%;
+}
+
+.column1 {
+  flex: 100%;
+  
+  padding: 20px;
+}
+
+.column2 {
+  flex: 0%;
+  background-color: white;
+  padding: 20px;
+}
+
+.bodysave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+h1,h2 {
+  color: rgb(14, 20, 82)
+}
+
+h2{
+    font-size:300%;
+}
+.grid-container {
+  columns: 5 200px;
+  column-gap: 2rem;
+  width: 90%;
+  margin: 0 auto;
+  .grid-item {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    border: solid 2px black;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+    &:hover img {
+      filter: grayscale(0);
+    }
+    &:hover {
+      border-color: rgb(11, 4, 20);
+    }
+  }
+}
+
+.grid-container .grid-item{
+  
+    width: 100%;
+    filter: grayscale(100%);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+  
+}
+
+.grid-container .grid-item {
+  width: 150px;
+  margin: 0 1.5rem 1.5rem 0;
+  display: inline-block;
+  width: 100%;
+  border: solid 2px black;
+  padding: 5px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  transition: all .25s ease-in-out;
+}
+
+
+.grid-container .grid-item:hover {
+  filter: grayscale(0);
+}
+
+.grid-container  {
+  margin: 5px 0;
+  padding: 0;
+  text-align: center;
+  font-style: italic;
+}
+
+#login-container {
+  text-align: center;
+  
+}
+
+#login-button {
+  
+  position: fixed;
+  right: 20px;
+  /* left: 20px; */
+  top: 80px;
+  height: 50px;
+  width: 80px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 30%;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #1f1141, #14215f);
+  /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+  transition: all 0.3s ease-in-out;
+}
+
+#login-button:hover {
+  background-color: #2980b9;
+}
+
+form, table {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #230a75;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding-left: 10px;
+  padding-right: 20px;
+  text-align: left;
+  color: #c8c8c8;
+}
+
+th {
+  background-color: rgb(28, 29, 116);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(28, 29, 116);
+  color:white;
+}
+
+tr:hover {
+  background-color:#45a049;
+  color:white;
+}

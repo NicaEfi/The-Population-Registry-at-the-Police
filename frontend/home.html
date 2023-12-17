@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Evidenta populatiei la politie</title>
+      <link rel="stylesheet" href="static/style.css">
+      <script src="script.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>    
+
+       <body>
+          <input type="checkbox" id="active">
+          <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+          <div class="wrapper">
+             <ul>
+                <li><a href="#About me">Despre noi</a></li>
+                <li><a href="#Resume">Adauga persoana</a></li>
+                <li><a href="#Projects">Cautare</a></li>
+                <li><a href="#Gallery">Comunitate</a></li>
+                <li><a href="#Contact">Contact</a></li>
+             </ul>
+          </div>
+          <div class="content">
+             <div class="title">
+               <h1 style="font-size:5vw"> Evidenta
+                <br> Populatiei la Politie</h1>
+            </div>
+          </div>
+          <div id="login-container">
+            <button  id="login-button" onclick="getData()">Login</button>
+          </div>
+          
+          <p style="padding-top:400px;"></p>
+          <div class="right">
+            <p><b>Acest site are drept scop colectarea și stocarea datelor personale ale cetățenilor într-o bază de date securizată.
+                <p>Informații precum nume, adresă, dată de naștere, sex, stare civilă etc., pot fi incluse pentru fiecare individ înregistrat.</p>
+            </b></p>
+            <div class="banner">
+                <div class="app-text">
+                    <p style="padding-top:50px;"></p>
+                    <div class="primary-btn">
+                        <div class="btn-group">
+                            <div class="play-btn">
+                                <div class="play-btn-inner">
+                                    <a href="#About me"><i class="fa fa-arrow-down"></h1></i><span><b>Despre noi</b></span></a>
+                                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div>
+              <p style="padding-top:410px;"></p>
+              <h2 class="about-me" id="About me"><br>Despre noi</h2></h1>
+         </div>
+         <div class="row">
+            <div class="side">
+              <div class="fakeimg1" style="height:200px;"><img src="static/images/data-database-analysis-system-information-concept.jpg"  width="100%"></div>
+              <div class="skills">
+              <h4>Conducerea</h4>
+              <div>
+                <p><i class="fa fa-circle" ></i> Oláh-Badi Csaba, șef serviciu</p>
+                <p><i class="fa fa-circle" ></i> Telefon: 0267 311 475</p>
+                <p><i class="fa fa-circle" ></i> E-mail: contact@evpcv.ro</p> 
+              </div>
+              <h4>Audiente</h4>
+              <div>
+                <p><i class="fa fa-circle" ></i> Luni, marți, miercuri:</p> 
+                <p><i class="fa fa-circle" ></i>  10:00 – 12:00.</p>
+                <p><i class="fa fa-circle" ></i> Înscrierile la audiențe se fac prin telefon nr. 0267 311 475, prin e-mail la contact@evpcv.ro, sau personal la sediul instituției.</p>
+              </div>
+              </div>
+              
+              <br>
+              
+            </div>
+            <div class="main">
+              <p> <i class="fa fa-circle" ></i>Serviciul public comunitar județean de evidență a persoanelor a fost înființat prin Hotărârea Consiliului Județean Covasna nr. 8/2005.
+                 Prin aceeași hotărâre au fost aprobate Regulamentul de organizare și funcționare, organigrama și statutul de funcții.</p>
+              <br>
+              <h4>Baza legala</h4>
+              <p><i class="fa fa-circle" ></i>Ordonanța nr. 84/2001 - privind înființarea, organizarea și funcționarea 
+                serviciilor publice comunitare de evidență a persoanelor, aprobată prin Legea nr. 372/2002, cu modificările și completările ulterioare.
+              </p>
+              <p><i class="fa fa-circle" ></i>OUG nr. 97/2005 - privind evidența, domiciliul, reședința și actele de identitate ale cetățenilor români, republicată.</p>
+              <p><i class="fa fa-circle" ></i>H.G. nr. 295/2021 pentru aprobarea Normelor metodologice de aplicare unitară a dispozițiilor Ordonanței de urgentă a Guvernului nr. 97/2005 privind evidența, domiciliul, reședinta și actele de identitate ale
+                cetățenilor români, precum și pentru stabilirea formei și conținutului actelor de identitate, ale dovezii de reședință și ale cărții de imobil</p>
+              <p><i class="fa fa-circle" ></i>Legea nr. 119/1996 - cu privire la actele de stare civilă, cu modificările și completările ulterioare.</p>
+              <p><i class="fa fa-circle" ></i>H.G. nr. 64/2011 pentru aprobarea metodologiei cu privire la aplicarea unitară a dispozițiilor în materie de stare civilă.</p>
+              <p><i class="fa fa-circle" ></i>Legea nr. 544/2001 - privind liberul acces la informațiile de interes public.</p>
+              <div class="img5" class="fakeimg" style="height:300px;"><img src="static/images/network-concept-ai-generated-image.jpg" alt=""  width="400px"></div>
+              
+            </div>
+          </div>
+          <div> 
+            <h2 class="about-me" id="Resume"><br>Adaugare persoane in baza de date</h2></h1>
+          </div>
+         
+
+          <form id="myForm" action="#" method="post" enctype="multipart/form-data">
+            <label for="nume">Nume:</label>
+            <input type="text" id="nume" name="nume" required>
+
+            <label for="prenume">Prenume:</label>
+            <input type="text" id="prenume" name="prenume" required>
+
+            <label for="CNP">CNP:</label>
+            <input type="text" id="CNP" name="CNP" required>
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value="F">F</option>
+                <option value="M">M</option>
+            </select>
+
+            <label for="telefon">Telefon:</label>
+            <input type="text" id="telefon" name="telefon" required>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+    
+            <label for="starecivila">Stare civila:</label>
+            <select id="starecivila" name="starecivila" required>
+                <option value="Singur/a">Singur/a</option>
+                <option value="Divortat/a">Divortat/a</option>
+                <option value="Casatorit/a">Casatorit/a</option>
+            </select>
+
+            <label for="dataNasterii">Data de naștere:</label>
+            <input type="text" id="dataNasterii" name="dataNasterii" placeholder="YYYY-MM-DD" required>
+    
+            <input type="submit" value="Adauga persoana">
+        </form>
+
+        <table id="myTable">
+          <thead>
+              <tr>
+                  <th>Nume</th>
+                  <th>Prenume</th>
+                  <th>CNP</th>
+                  <th>Sex</th>
+                  <th>Telefon</th>
+                  <th>Email</th>
+                  <th>Stare civila</th>
+                  <th>Data Nasterii</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Aici vor fi adăugate rândurile cu datele introduse anterior -->
+          </tbody>
+      </table>
+
+      <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            // Obtain values from the form
+            var nume = document.getElementById("nume").value;
+            var prenume = document.getElementById("prenume").value;
+            var CNP = document.getElementById("CNP").value;
+            var sex = document.getElementById("sex").value;
+            var telefon = document.getElementById("telefon").value;
+            var email = document.getElementById("email").value;
+            var dataNasterii = document.getElementById("dataNasterii").value;
+            var starecivila = document.getElementById("starecivila").value;
+    
+            // Create an object to hold the data
+            var personData = {
+            Nume: nume,
+            Prenume: prenume,
+            CNP: CNP,
+            Sex: sex,
+            Telefon: telefon,
+            Email: email,
+            StareCivila: starecivila,
+            DataNasterii: dataNasterii
+        };
+            
+            var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+            var cell7 = newRow.insertCell(6);
+            var cell8 = newRow.insertCell(7);
+            cell1.innerHTML = nume;
+            cell2.innerHTML = prenume;
+            cell3.innerHTML = CNP;
+            cell4.innerHTML = sex;
+            cell5.innerHTML = telefon;
+            cell6.innerHTML = email;
+            cell7.innerHTML = starecivila;
+            cell8.innerHTML = dataNasterii;
+
+            console.log("sometjin");
+            console.log(personData);
+            // Send the data to the server using a fetch request
+            fetch(`http://localhost:8800/addPerson`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(personData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the server responds with the inserted person's data
+                // You can handle the response as needed
+                console.log(data);
+    
+                // Create a new row in the table and add the data
+                var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+                var newRow = table.insertRow(table.rows.length);
+                // ... (insert cells and populate them with data as you did before)
+            })
+            .catch(error => console.error("Error:", error));
+    
+            // Reset form values
+            document.getElementById("nume").value = "";
+            document.getElementById("prenume").value = "";
+            document.getElementById("CNP").value = "";
+            document.getElementById("telefon").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("starecivila").value="";
+            document.getElementById("dataNasterii").value = "";
+        });
+    </script>
+
+              <p style="padding-top:70px;"></p>
+              <div class="row">
+                <div class="column1"></div>
+                <div class="column2"></div>
+              </div>
+            </div>
+          </div>
+          <div> 
+            <h2 class="about-me" id="Projects"><br>Cautare</h2></h1>
+          </div>
+          <p style="padding-top:20px;"></p>
+          <div class="row">
+            <div class="column1">
+              <h4> Informatii din baza de date</h4>
+
+                <h3>Se pot cauta anumite date personale (documente, infractiuni, adrese etc.).</h3>
+<div id="rezultate"></div>
+<script>
+    // Folosește JavaScript pentru a efectua o cerere către server și a afișa datele în HTML
+    fetch('http://localhost:8800/afiseazaDate')
+        .then(response => response.json())
+        .then(data => {
+            // Construiește un tabel HTML cu datele primite
+            var tableHTML = "<table border='1'><tr><th>CetateanID</th><th>Nume</th><th>Prenume</th><th>CNP</th><th>Telefon</th><th>Email</th><th>DataNasterii</th><th>Stergere</th></tr>";
+
+            data.forEach(row => {
+                tableHTML += `<tr><td>${row.CetateanID}</td><td>${row.Nume}</td><td>${row.Prenume}</td><td>${row.CNP}</td><td>${row.Telefon}</td><td>${row.Email}</td><td>${row.DataNasterii}</td><td> <i class="fas fa-trash" style="cursor: pointer;" onclick="stergeCetatean(${row.CetateanID})"></i>`;
+            });
+
+            tableHTML += "</table>";
+
+            // Adaugă tabelul în div-ul cu id-ul "rezultate"
+            document.getElementById("rezultate").innerHTML = tableHTML;
+        })
+        .catch(error => {
+            console.error('Eroare:', error);
+        });
+
+    // Funcția pentru a șterge un cetățean
+    function stergeCetatean(CetateanID) {
+        // Trimite o cerere către server pentru ștergerea cetățeanului cu ID-ul specificat
+        fetch(`http://localhost:8800/stergeCetatean/${CetateanID}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(data => {
+                // Dacă ștergerea a fost reușită, reîncarcă datele pentru a actualiza tabelul
+                if (data.success) {
+                    location.reload();
+                } else {
+                    console.error('Eroare la ștergere:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Eroare la ștergere:', error);
+            });
+    }
+</script>
+
+                <!--<form id="searchForm">
+                  <label for="oras">Selectează oraș:</label>
+                  <select id="oras" name="oras">
+                      <option value="oras1">Oras 1</option>
+                      <option value="oras2">Oras 2</option>
+                       Adaugă mai multe opțiuni pentru alte orașe 
+                  </select>
+          
+                  <label for="tipDocument">Selectează tipul documentului:</label>
+                  <select id="tipDocument" name="tipDocument">
+                      <option value="buletin">Buletin</option>
+                      <option value="pasaport">Pașaport</option>
+                      Adaugă mai multe opțiuni pentru alte tipuri de documente 
+                  </select>
+          
+                  <label for="infractiuni">Selectează infracțiunea:</label>
+                  <select id="infractiuni" name="infractiuni">
+                      <option value="furt">Furt</option>
+                      <option value="agresiune">Agresiune</option>
+                       Adaugă mai multe opțiuni pentru alte infracțiuni 
+                  </select>
+          
+                  <button type="button" onclick="cautaCetateni()">Caută Cetățeni</button>
+              </form>
+          
+              <div id="rezultate"></div>
+          
+              <script src="script.js"></script>-->
+                <!--<form id="queryForm">
+                  <label for="dataSelectata">Selectează data:</label>
+                  <input type="date" id="dataSelectata" name="dataSelectata" required>
+                  <button type="button" onclick="vizualizeazaDatele()">Vizualizează Datele</button>
+              </form>
+              <div id="rezultate"></div>
+          
+              <script src="script.js"></script>-->
+                    
+            </div>
+            <div class="column2">
+                            
+              <p style="padding-top:70px;"></p>
+                 
+            </div>
+          </div>
+          <p style="padding-top:70px;"></p>
+          <div> 
+            <h2 class="about-me" id="Gallery"><br>Comunitate</h2></h1>
+            <div class="img4" class="fakeimg" style="height:400px;"><img src="static/images/databaseadmin_4.jpg" alt="" height="400px" width="550px"></div>
+          </div>
+          <div> 
+            <h2 class="about-me" id="Contact"><br>Contact</h2>
+          </div>
+          <!-- Footer -->
+          <div class="footer">
+            <div class="column-footer">
+            <ul>
+              <li><a class="phone-no">6446242286</a></li>
+              <li><a class="sep">/</a></li>
+              <li><a class="email">inica3107@yahoo.com</a></li>
+              
+            </ul>
+            </div>
+            <div class="column-footer-2">
+              <i class="fa fa-facebook-square" i>
+            </div>
+            <div class="column-footer-3">
+              <i class="fa fa-linkedin"></i>
+              <p>bjdcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                               bhjbhjbhbhhbkbkjbk</p>
+            </div>
+          </div>
+          
+<script>
+  async function getData(){
+    const response = await fetch("http://localhost:8800/");
+    console.log(response.json());
+}</script>
+
+       </body>
+</html>
