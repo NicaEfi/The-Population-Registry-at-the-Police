@@ -6,6 +6,7 @@
       <title>Evidenta populatiei la politie</title>
       <link rel="stylesheet" href="static/style.css">
       <script src="script.js"></script>
+      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
    </head>    
 
@@ -15,9 +16,9 @@
           <div class="wrapper">
              <ul>
                 <li><a href="#About me">Despre noi</a></li>
-                <li><a href="#Resume">Adauga persoana</a></li>
-                <li><a href="#Projects">Cautare</a></li>
-                <li><a href="#Gallery">Comunitate</a></li>
+                <li><a href="#Resume">Adauga cetatean</a></li>
+                <li><a href="#Projects">Cetateni</a></li>
+                <li><a href="#Gallery">Informatii</a></li>
                 <li><a href="#Contact">Contact</a></li>
              </ul>
           </div>
@@ -240,7 +241,7 @@
             </div>
           </div>
           <div> 
-            <h2 class="about-me" id="Projects"><br>Cautare</h2></h1>
+            <h2 class="about-me" id="Projects"><br>Cetateni</h2></h1>
           </div>
           <p style="padding-top:20px;"></p>
           <div class="row">
@@ -249,16 +250,17 @@
 
                 <h3>Se pot cauta anumite date personale (documente, infractiuni, adrese etc.).</h3>
 <div id="rezultate"></div>
+<div class="white">
 <script>
     // Folosește JavaScript pentru a efectua o cerere către server și a afișa datele în HTML
     fetch('http://localhost:8800/afiseazaDate')
         .then(response => response.json())
         .then(data => {
             // Construiește un tabel HTML cu datele primite
-            var tableHTML = "<table border='1'><tr><th>CetateanID</th><th>Nume</th><th>Prenume</th><th>CNP</th><th>Telefon</th><th>Email</th><th>DataNasterii</th><th>Stergere</th></tr>";
+            var tableHTML = "<table border='1'><tr></th><th>Nume</th><th>Prenume</th><th>CNP</th><th>Telefon</th><th>Email</th><th>DataNasterii</th><th>Editare/Stergere</th></tr>";
 
             data.forEach(row => {
-                tableHTML += `<tr><td>${row.CetateanID}</td><td>${row.Nume}</td><td>${row.Prenume}</td><td>${row.CNP}</td><td>${row.Telefon}</td><td>${row.Email}</td><td>${row.DataNasterii}</td><td> <i class="fas fa-trash" style="cursor: pointer;" onclick="stergeCetatean(${row.CetateanID})"></i>`;
+                tableHTML += `<tr><td>${row.Nume}</td><td>${row.Prenume}</td><td>${row.CNP}</td><td>${row.Telefon}</td><td>${row.Email}</td><td>${row.DataNasterii}</td><td> <i class="fas fa-edit" style="cursor: pointer;" onclick="editeazaCetatean(${row.CetateanID})"></i> <i class="fas fa-trash" style="cursor: pointer;" onclick="stergeCetatean(${row.CetateanID})"></i></td></tr>`;
             });
 
             tableHTML += "</table>";
@@ -287,78 +289,405 @@
                 console.error('Eroare la ștergere:', error);
             });
     }
-</script>
+          </script>
+            <div> 
+              <h2 class="about-me" id="Resume"><br>Adaugare documente in baza de date</h2></h1>
+            </div>
+            
+            <form id="documentForm" action="#" method="post" enctype="multipart/form-data">
 
-                <!--<form id="searchForm">
-                  <label for="oras">Selectează oraș:</label>
-                  <select id="oras" name="oras">
-                      <option value="oras1">Oras 1</option>
-                      <option value="oras2">Oras 2</option>
-                       Adaugă mai multe opțiuni pentru alte orașe 
-                  </select>
+             
+              
+              <label for="documentTip">Tip document:</label>
+              <input type="text" id="documentTip" name="documentTip" required>
           
-                  <label for="tipDocument">Selectează tipul documentului:</label>
-                  <select id="tipDocument" name="tipDocument">
-                      <option value="buletin">Buletin</option>
-                      <option value="pasaport">Pașaport</option>
-                      Adaugă mai multe opțiuni pentru alte tipuri de documente 
-                  </select>
+              <label for="numar">Numar:</label>
+              <input type="text" id="numar" name="numar" required>
           
-                  <label for="infractiuni">Selectează infracțiunea:</label>
-                  <select id="infractiuni" name="infractiuni">
-                      <option value="furt">Furt</option>
-                      <option value="agresiune">Agresiune</option>
-                       Adaugă mai multe opțiuni pentru alte infracțiuni 
-                  </select>
+              <label for="dataEliberarii">Data de eliberare:</label>
+              <input type="text" id="dataEliberarii" name="dataEliberarii" placeholder="YYYY-MM-DD" required>
           
-                  <button type="button" onclick="cautaCetateni()">Caută Cetățeni</button>
-              </form>
+              <label for="cetateanID">Cetatean:</label>
+              <select id="cetateanID" name="cetateanID" required>
+                  <!-- Opțiuni vor fi adăugate dinamic folosind JavaScript -->
+              </select>
           
-              <div id="rezultate"></div>
+              <label for="sectieID">Sectie:</label>
+              <select id="sectieID" name="sectieID" required>
+                  <!-- Opțiuni vor fi adăugate dinamic folosind JavaScript -->
+              </select>
           
-              <script src="script.js"></script>-->
-                <!--<form id="queryForm">
-                  <label for="dataSelectata">Selectează data:</label>
-                  <input type="date" id="dataSelectata" name="dataSelectata" required>
-                  <button type="button" onclick="vizualizeazaDatele()">Vizualizează Datele</button>
-              </form>
-              <div id="rezultate"></div>
+              <input type="submit" value="Adauga document">
+          </form>
+          <script>
+          // Funcție pentru a adăuga opțiuni în dropdown pentru CetateanID
+          function populateCetateanDropdown() {
+              fetch('http://localhost:8800/getCetateni') // Endpoint pentru a obține lista de cetățeni
+                  .then(response => response.json())
+                  .then(data => {
+                      var cetateanDropdown = document.getElementById('cetateanID');
           
-              <script src="script.js"></script>-->
-                    
-            </div>
-            <div class="column2">
-                            
-              <p style="padding-top:70px;"></p>
-                 
-            </div>
+                      data.forEach(cetatean => {
+                          var option = document.createElement('option');
+                          option.value = cetatean.CetateanID;
+                          option.text = `${cetatean.Nume} ${cetatean.Prenume}`;
+                          cetateanDropdown.add(option);
+                      });
+                  })
+                  .catch(error => console.error('Eroare la obținerea listei de cetățeni:', error));
+          }
+          
+          // Funcție pentru a adăuga opțiuni în dropdown pentru SectieID
+          function populateSectieDropdown() {
+              fetch('http://localhost:8800/getSectii') // Endpoint pentru a obține lista de sectii
+                  .then(response => response.json())
+                  .then(data => {
+                      var sectieDropdown = document.getElementById('sectieID');
+          
+                      data.forEach(sectie => {
+                          var option = document.createElement('option');
+                          option.value = sectie.SectieID;
+                          option.text = sectie.NumeSectie;
+                          sectieDropdown.add(option);
+                      });
+                  })
+                  .catch(error => console.error('Eroare la obținerea listei de sectii:', error));
+          }
+          
+          // Apelează funcțiile de populare la încărcarea paginii
+          document.addEventListener('DOMContentLoaded', function () {
+              populateCetateanDropdown();
+              populateSectieDropdown();
+          });
+          
+          document.getElementById("documentForm").addEventListener("submit", function (event) {
+              event.preventDefault();
+          
+              // Obțineți valorile din formular
+              var documentTip = document.getElementById("documentTip").value;
+              var numar = document.getElementById("numar").value;
+              var dataEliberarii = document.getElementById("dataEliberarii").value;
+              var cetateanID = document.getElementById("cetateanID").value;
+              var sectieID = document.getElementById("sectieID").value;
+          
+              // Creați un obiect pentru a păstra datele
+              var documentData = {
+                  DocumentTip: documentTip,
+                  Numar: numar,
+                  DataEliberarii: dataEliberarii,
+                  CetateanID: cetateanID,
+                  SectieID: sectieID
+              };
+          
+              // Trimiteți datele către server folosind o cerere fetch
+              fetch(`http://localhost:8800/addDocument`, {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(documentData)
+              })
+              .then(response => response.json())
+              .then(data => {
+                  // Răspunsul serverului, gestionați-l conform necesităților
+                  console.log(data);
+          
+                  // Creați un nou rând în tabel și adăugați datele
+                  var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+                  var newRow = table.insertRow(table.rows.length);
+                  var cells = [];
+          
+                  for (let i = 0; i < 8; i++) {
+                      cells[i] = newRow.insertCell(i);
+                  }
+          
+                  cells[0].innerHTML = documentTip;
+                  cells[1].innerHTML = numar;
+                  cells[2].innerHTML = dataEliberarii;
+                  cells[3].innerHTML = cetateanID;  // Aici ar trebui să afișați numele și prenumele, nu ID-ul
+                  cells[4].innerHTML = sectieID;    // Aici ar trebui să afișați numele sectiei, nu ID-ul
+              })
+              .catch(error => console.error("Eroare:", error));
+          
+              // Resetați valorile formularului
+              document.getElementById("documentTip").value = "";
+              document.getElementById("numar").value = "";
+              document.getElementById("dataEliberarii").value = "";
+          });
+        </script>
+            <p style="padding-top:70px;"></p>
+</div> 
+            <div id="rezultateDocumenteGenerale"></div>
+          
+            </div>  
           </div>
           <p style="padding-top:70px;"></p>
-          <div> 
-            <h2 class="about-me" id="Gallery"><br>Comunitate</h2></h1>
-            <div class="img4" class="fakeimg" style="height:400px;"><img src="static/images/databaseadmin_4.jpg" alt="" height="400px" width="550px"></div>
+           
+            <h2 class="about-me" id="Gallery"><br>Selecteaza documentul:</h2></h1>
+          <div class="design">
+          <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+          <div class="search-form-container">
+            <!-- Adaugă un formular pentru căutarea cetățenilor cu documentul specificat -->
+            <form id="searchForm">
+                <!-- Adaugă un meniu dropdown pentru a selecta denumirea documentului -->
+                <select id="documentType" name="documentType">
+                    <option value="CI">CI(card de identitate)</option>
+                    <option value="CC">CC(certificat de casatorie)</option>
+                    <option value="PA">PA(permis de arma)</option>
+                    <option value="PC">PC(permis de conducere)</option>
+                    <option value="BI">BI(buletin de identitate)</option>
+                    <!-- Adaugă mai multe opțiuni pentru alte tipuri de documente -->
+                </select>
+
+                <!-- Adaugă un buton pentru a declanșa căutarea -->
+                <button type="button"  onclick="cautaCetateniCuDocument()">Caută Cetățeni</button>
+            </form>
+
+            <!-- Adaugă un div pentru afișarea rezultatelor căutării -->
+            <div id="rezultateCetateniCuDocument"></div>
+            <p style="padding-top:70px;"></p>
           </div>
-          <div> 
-            <h2 class="about-me" id="Contact"><br>Contact</h2>
           </div>
-          <!-- Footer -->
-          <div class="footer">
-            <div class="column-footer">
-            <ul>
-              <li><a class="phone-no">6446242286</a></li>
-              <li><a class="sep">/</a></li>
-              <li><a class="email">inica3107@yahoo.com</a></li>
-              
-            </ul>
-            </div>
-            <div class="column-footer-2">
-              <i class="fa fa-facebook-square" i>
-            </div>
-            <div class="column-footer-3">
-              <i class="fa fa-linkedin"></i>
-              <p>bjdcbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                               bhjbhjbhbhhbkbkjbk</p>
-            </div>
+          
+          <!-- Add this inside your form or a dedicated section -->
+          <h2 class="about-me" id="Gallery"><br>Selectare strada:</h2></h1>
+          <div class="design">
+          <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+          <div class="search-form-container">
+
+          <form id="searchForm">
+          <!--<label for="selectedStreet">Selectare strada:</label>-->
+          <select id="selectedStreet" name="selectedStreet">
+              <option value="Strada Independentei">Strada Independentei</option>
+              <option value="Piata Victoriei">Piata Victoriei</option>
+              <option value="Calea Victoriei">Calea Victoriei</option>
+              <option value="Bulevardul Dacia">Bulevardul Dacia</option>
+              <option value="Strada Garii">Strada Garii</option>
+              <option value="Aleea Fericirii">Aleea Fericirii</option>
+              <!-- Add more options for other streets if needed -->
+          </select>
+
+          <button type="button" onclick="searchSections()">Cauta sectie</button>
+          </form>
+          <div id="searchResults"></div>
+          <p style="padding-top:70px;"></p>
           </div>
+          </div>
+
+          <!-- Add this inside your form or a dedicated section -->
+          <h2 class="about-me" id="Gallery"><br>Numar minim de membrii:</h2></h1>
+          <div class="design">
+          <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+          <div class="search-form-container">
+            
+          <form id="searchForm">
+          <input type="number" id="minMembers" name="minMembers" min="0" value="2">
+          <button type="button" onclick="searchAddresses()">Cauta Adrese</button>
+          
+          <!-- Add a div to display the results table -->
+          <div id="resultTable"></div>
+          </form>
+          <p style="padding-top:70px;"></p>
+          </div>
+          </div>
+          
+          
+          <!-- Add this inside your form or a dedicated section -->
+          <h2 class="about-me" id="Gallery"><br>Cautare modificari de identitate dupa gen:</h2></h1>
+          <div class="design">
+          <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+          <div class="search-form-container">
+            
+          <form id="searchForm">
+            
+            <form id="searchByGenderForm">
+                <select id="gender" name="gender">
+                    <option value="F">Feminin</option>
+                    <option value="M">Masculin</option>
+                </select>
+                <button type="button" onclick="cautaDupaGen()">Caută după Gen</button>
+            </form>
+            <div id="rezultateDupaGen"></div>
+          </form>
+          </div>
+          <p style="padding-top:70px;"></p>
+          </div>
+          
+        <div class="containerafisare">
+        <div>
+          <h2 class="about-me">Afișează Infracțiuni și Informații despre Cetățeni</h2>
+          <div class="infractiune"><button type="button" onclick="afiseazaInfractiuniSiCetateni()">Afișează</button></div>
+          <div id="rezultateInfractiuniCetateni"></div>
+        </div>
+        
+        <div>
+          <h2 class="about-me">Afișează Informații despre Documente și Sectii</h2>
+          <div class="infractiune"><button type="button" onclick="afiseazaInformatiiDocumenteSectii()">Afișează</button></div>
+          <div id="rezultateInformatiiDocumenteSectii"></div>
+        </div>
+        </div>
+
+        
+        <div class="design">
+          <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+          <div class="search-form-container">
+            
+        <form id="searchForm">
+        <label for="numarInfractiuni" type="button">Orasele pentru care numarul minim de infractiuni, este cel introdus de dumneavoastra :</label>
+        <input type="number" id="numarInfractiuni" name="numarInfractiuni" min="1" value="4">
+        <button type="button" onclick="afiseazaCetateniInfractori()">Afisează Oras</button>
+        <div id="rezultateInfractori"></div>
+        </div>
+        </form>
+        
+        <p style="padding-top:70px;"></p>
+        </div>
+
+
+        <!-- Add this inside your form or a dedicated section -->
+        <h2 class="about-me" id="Gallery"><br>Infractori cu pedeapsa peste medie:</h2></h1>
+        <div class="design">
+        <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+        <div class="search-form-container">
+          
+        
+        <!-- Adăugați un buton pentru a iniția afișarea rezultatelor -->
+        <button type="button" onclick="afiseazaInfractiuni()">Afișează Infractori</button>
+
+        <!-- Adăugați un element pentru a afișa rezultatele interogării -->
+        <div id="rezultateInfractiuni"></div>
+        
+        
+    
+        <p style="padding-top:70px;"></p>
+        </div>
+        </div>
+        
+
+        <!-- Add this inside your form or a dedicated section -->
+        <h2 class="about-me" id="Gallery"><br>Documente emise pana la data curenta:</h2></h1>
+        <div class="design">
+        <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+        <div class="search-form-container">
+          
+        <!-- Adaugă un buton pentru afișarea documentelor -->
+        <button type="button" onclick="afiseazaDocumente()">Afișează Documente</button>
+
+        <div id="rezultateDocumente"></div>
+        
+        <p style="padding-top:70px;"></p>
+        </div>
+        </div>
+        
+        <!-- Add this inside your form or a dedicated section -->
+        <h2 class="about-me" id="Gallery"><br>Afiseaza persoanele ce au modificari de identitate si sunt nascuti dupa anul introdus de dumneavoastra:</h2></h1>
+        <div class="design">
+        <!-- Adaugă un container pentru a poziționa formularul în mijlocul imaginii -->
+        <div class="search-form-container">
+          
+        <!-- Adaugă un input pentru anul de naștere -->
+        
+        <input type="number" id="anNastere" name="anNastere" min="1980" value="1980">
+        <button type="button" onclick="afiseazaModificariIdentitate()">Afisează Modificări Identitate</button>
+
+        <div id="rezultateModificari"></div>
+        <p style="padding-top:70px;"></p>
+        </div>
+        </div>
+          <script>
+          // Adaugă o funcție pentru căutarea cetățenilor cu un anumit document
+          async function cautaCetateniCuDocument() {
+              const documentType = document.getElementById("documentType").value;
+
+              // Realizează o cerere către server pentru a obține cetățenii cu documentul specificat
+              const response = await fetch(`http://localhost:8800/cautaCetateniCuDocument/${documentType}`);
+              const data = await response.json();
+
+              // Construiește un tabel HTML cu rezultatele căutării
+              var tableHTML = "<table border='1'><tr><th>Nume</th><th>Prenume</th><th>CNP</th><th>Telefon</th><th>Email</th><th>DataNasterii</th><th>Stergere</th></tr>";
+
+              data.forEach(row => {
+                  tableHTML += `<tr><td>${row.Nume}</td><td>${row.Prenume}</td><td>${row.CNP}</td><td>${row.Telefon}</td><td>${row.Email}</td><td>${row.DataNasterii}</td><td> <i class="fas fa-trash" style="cursor: pointer;" onclick="stergeCetatean(${row.CetateanID})"></i>`;
+              });
+
+              tableHTML += "</table>";
+
+              // Adaugă tabelul în div-ul cu id-ul "rezultateCetateniCuDocument"
+              document.getElementById("rezultateCetateniCuDocument").innerHTML = tableHTML;
+          }
+
+          </script>
+
+          <script>
+            async function searchSections() {
+              // Get the selected street from the dropdown
+              const selectedStreet = document.getElementById("selectedStreet").value;
+
+              // Make a fetch request to the server
+              const response = await fetch(`http://localhost:8800/searchSections/${selectedStreet}`);
+              const data = await response.json();
+
+              // Handle the received data
+              const resultsContainer = document.getElementById("searchResults");
+
+              // Clear previous results
+              resultsContainer.innerHTML = "";
+
+              // Create a table to display the results
+              const table = document.createElement("table");
+              table.border = "1";
+
+              // Create the header row
+              const headerRow = table.insertRow();
+              const headers = ["SectionID", "SectionName", "Oras", "Telefon", "Responsabil", "FunctieResponsabil"];
+              headers.forEach(headerText => {
+                  const header = document.createElement("th");
+                  const textNode = document.createTextNode(headerText);
+                  header.appendChild(textNode);
+                  headerRow.appendChild(header);
+              });
+
+              // Create rows with data
+              data.forEach(rowData => {
+                  const row = table.insertRow();
+                  Object.values(rowData).forEach(value => {
+                      const cell = row.insertCell();
+                      const textNode = document.createTextNode(value);
+                      cell.appendChild(textNode);
+                  });
+              });
+
+              // Append the table to the results container
+              resultsContainer.appendChild(table);
+          }
+          </script>
+          <script>
+          async function searchAddresses() {
+            // Get the minimum number of members from the input
+            const minMembers = document.getElementById("minMembers").value;
+
+            // Make a fetch request to the server with the minimum number of members
+            const response = await fetch(`http://localhost:8800/searchAddresses?minMembers=${minMembers}`);
+            const data = await response.json();
+
+            // Create an HTML table to display the results
+            let tableHTML = "<table border='1'><tr><th>AdresaTip</th><th>Strada</th><th>Numar</th><th>Oras</th><th>Judet</th></tr>";
+
+            // Populate the table with data
+            data.forEach(row => {
+                tableHTML += `<tr><td>${row.AdresaTip}</td><td>${row.Strada}</td><td>${row.Numar}</td><td>${row.Oras}</td><td>${row.Judet}</td></tr>`;
+            });
+
+            tableHTML += "</table>";
+
+            // Display the table in a specific div
+            document.getElementById("resultTable").innerHTML = tableHTML;
+        }
+
+
+          </script>
+
+          
           
 <script>
   async function getData(){

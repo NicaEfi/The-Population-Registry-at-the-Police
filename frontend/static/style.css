@@ -36,6 +36,9 @@ body{
   
 }
 
+h3{
+  color:#c8c8c8;
+}
 
 .menu-btn{
   position: fixed;
@@ -507,4 +510,83 @@ tr:nth-child(even) {
 tr:hover {
   background-color:#45a049;
   color:white;
+}
+
+/* Adaugă stiluri pentru containerul formularului */
+.search-form-container {
+  text-align: center; /* Aliniere text la centru */
+  
+ 
+
+}
+
+/* Adaugă stiluri pentru formular */
+#searchForm {
+  display: inline-block; /* Afișează formularul într-o linie */
+  margin-right: 10px; /* Spațiu între formular și rezultate */
+  
+}
+
+/* Afișează caseta de text și meniul dropdown pe aceeași linie */
+#documentTypeInput, #documentType {
+  display: inline-block;
+  margin-right: 0px;
+  
+  
+}
+
+/* Ajustează lățimea casetei de text și meniului dropdown */
+#documentTypeInput {
+  width: 150px; /* Lățimea dorită */
+  
+}
+
+#documentType {
+  width: 100px; /* Lățimea dorită */
+}
+
+[type="button"] {
+  background-color: #230a75;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+[type="button"]:hover {
+  background-color: #45a049;
+}
+
+.design{
+  background:linear-gradient(-135deg, rgb(12, 6, 66), #071a79);
+}
+
+.infractiune{
+
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.containerafisare {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 48%; /* pentru a lăsa un spațiu mic între cele două div-uri */
+  margin-bottom: 20px; /* spațiu între div-uri */
+}
+
+#textstyle {
+
+  color: #c8c8c8;
+}
+
+.white{
+
+  background-color: #ffffff;
 }
